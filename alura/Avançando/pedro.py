@@ -1,0 +1,5 @@
+nomes = ('Nico', 'Douglas', 'Flavio', 'Daniel')
+nomes = list(nomes)
+nomes.append('Fabio')
+nomes = tuple(nomes)
+print (nomes)
