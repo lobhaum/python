@@ -11,10 +11,14 @@ class Conta:
         self.__limite =  limite
 
     def extrato(self):
-        print(f'Saldo {self.saldo} do titular {self.titular}')
+        print(f'Saldo {self.__saldo} do titular {self.__titular}')
     
     def deposita(self, valor):
-        self.saldo += valor
+        self.__saldo += valor
     
     def saca(self, valor):
-        self.saldo -= valor
+        self.__saldo -= valor
+    
+    def transfere(self, valor, destino):
+        self.saca(valor)
+        destino.deposita(valor)
