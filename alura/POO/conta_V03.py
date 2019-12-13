@@ -16,10 +16,13 @@ class Conta:
     def deposita(self, valor):
         self.__saldo += valor
     
+    # verifica se valor disponível é compativel com pedido de saque:
+    
     def __pode_sacar(self, valor_a_sacar):
-        valor_disponivel_a_sacar = self.__saldo+ self.__limite
+        valor_disponivel_a_sacar = self.__saldo + self.__limite
         return valor_a_sacar <= valor_disponivel_a_sacar 
 
+    # executa o saque após realização da verificação if()
     def saca(self, valor):
         if(self.__pode_sacar(valor)):
             self.__saldo -= valor
