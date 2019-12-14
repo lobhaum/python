@@ -46,9 +46,9 @@ vingadores = Filme('Vingadores', 2019, 180)
 #dando like:
 vingadores.dar_likes()
 #  imprimindo resultado:
-print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - '
-      f'Duração: {vingadores.duracao}'
-      f' Likes: {vingadores.likes}')
+# print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - '
+#      f'Duração: {vingadores.duracao}'
+#      f' Likes: {vingadores.likes}')
 
 
 
@@ -58,6 +58,15 @@ atlanta = Serie('Atlanta', 2018,2)
 atlanta.dar_likes()
 atlanta.dar_likes()
 # imprimindo resultado:
-print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporada(s):' 
-      f' {atlanta.temporadas}'
-      f' - Likes: {atlanta.likes}')
+# print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporada(s):' 
+#      f' {atlanta.temporadas}'
+#      f' - Likes: {atlanta.likes}')
+
+filmes_e_series = [vingadores, atlanta]
+for programa in filmes_e_series:
+    # detalhes chama o objeto programa e a propriedade duracao,
+    # verifica se existe 'duração' através de 'hasattr' has attribute
+    # usando if caso tenha, imprime o atributo duração 
+    # caso não tenha imprime o atributo temporadas
+    detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas
+    print(f'Programa: {programa.nome} - Detalhes: {detalhes}   Likes: {programa.likes}')
