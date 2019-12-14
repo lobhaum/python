@@ -1,54 +1,45 @@
-class Filme:
+# criação da classe Programa (herança)
+class Programa:
     
-    def __init__(self, nome, ano, duracao):
-        self.__nome = nome.title()
+    def __init__(self, nome, ano):
+        self._nome = nome.title()
         self.ano = ano
-        self.duracao = duracao 
-        self.__likes = 0
+        self._likes = 0
 
     # criando property para não quebrar codigo abaixo
     @property
     def nome(self):
-        return self.__nome 
+        return self._nome 
 
     @property
     def likes(self):
-        return self.__likes
+        return self._likes
     
     # criando setter para poder modificar o nome com atributo privado
     @nome.setter
     def nome(self, novo_nome):
-        self.__nome =novo_nome.title()
+        self._nome =novo_nome.title()
     
     def dar_likes(self):
-        self.__likes += 1
+        self._likes += 1
 
-# Criação da classe Serie:
-class Serie:
+# Criação da classe Filmes, extendendo Programa:
+class Filme(Programa):
+    def __init__(self, nome, ano, duracao):
+        self._nome = nome.title()
+        self.ano = ano
+        self.duracao = duracao
+        self._likes = 0
+
+# Criação da classe Serie , extendendo Programa:
+class Serie(Programa):
     
     def __init__(self, nome, ano, temporadas):
-        self.__nome = nome.title()
+        self._nome = nome.title()
         self.ano = ano
         self.temporadas = temporadas
-        self.__likes = 0
+        self._likes = 0
                 
-    # criando property para não quebrar codigo abaixo
-    @property
-    def nome(self):
-        return self.__nome 
-
-    @property
-    def likes(self):
-        return self.__likes
-    
-    # criando setter para poder modificar o nome com atributo privado
-    @nome.setter
-    def nome(self, novo_nome):
-        self.__nome =novo_nome.title()
-    
-    def dar_likes(self):
-        self.__likes += 1
-
 # criandoe alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
 #dando like:
