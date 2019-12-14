@@ -26,7 +26,7 @@ class Programa:
     # tornando a classe coesa, colocando para a classe Programa
     # imprimir seus atributos:
     def imprime(self):
-        print(f'Nome: {self._nome} - Duração: {self.ano} - Likes: {self._likes}')
+        print(f'Nome: {self._nome} - Ano: {self.ano} - Likes: {self._likes}')
 
 # Criação da classe Filmes, extendendo Programa:
 class Filme(Programa):
@@ -35,9 +35,10 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    #sem função, apenas ilustrativo: 
-    def retorna_cadastro_diferenciado(self):
-        pass
+    #sobrescrevendo o método Programa.imprime()
+    def imprime(self):
+        print(f'Nome: {self._nome} - Ano: {self.ano} Duração: {self.duracao} minutos - Likes: {self._likes}')
+
 
 # Criação da classe Serie , extendendo Programa:
 class Serie(Programa):
@@ -46,9 +47,18 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
                 
+    #sobrescrevendo o método Programa.imprime()
+    def imprime(self):
+        print(f'Nome: {self._nome} - Ano: {self.ano} Temporada: {self.temporadas} - Likes: {self._likes}')
+
 # criando e alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
 #dando like:
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
+vingadores.dar_likes()
 vingadores.dar_likes()
 #  imprimindo resultado:
 # print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - '
@@ -75,5 +85,5 @@ for programa in filmes_e_series:
     # caso não tenha imprime o atributo temporadas
     # cancelando o algoritmo de verificação detalhes pela criaçãodo metodo Programa.imprime()
     # detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas
-    programa.imprime()
+    programa.imprime() # polimorfismo interpreta quando o metodo sera de filmes ou series automaticamente
     # print(f'Programa: {programa.nome} - Detalhes: {detalhes}   Likes: {programa.likes}')
