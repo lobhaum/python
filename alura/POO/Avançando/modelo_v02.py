@@ -18,7 +18,7 @@ class Programa:
     # criando setter para poder modificar o nome com atributo privado
     @nome.setter
     def nome(self, novo_nome):
-        self._nome =novo_nome.title()
+        self._nome = novo_nome.title()
     
     def dar_likes(self):
         self._likes += 1
@@ -26,21 +26,18 @@ class Programa:
 # Criação da classe Filmes, extendendo Programa:
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
-        self._nome = nome.title()
-        self.ano = ano
+        # super chama a classe mãe:
+        super().__init__(nome, ano)
         self.duracao = duracao
-        self._likes = 0
 
 # Criação da classe Serie , extendendo Programa:
 class Serie(Programa):
     
     def __init__(self, nome, ano, temporadas):
-        self._nome = nome.title()
-        self.ano = ano
+        super().__init__(nome, ano)
         self.temporadas = temporadas
-        self._likes = 0
                 
-# criandoe alimentando objeto Filme:
+# criando e alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
 #dando like:
 vingadores.dar_likes()
