@@ -23,6 +23,11 @@ class Programa:
     def dar_likes(self):
         self._likes += 1
 
+    # tornando a classe coesa, colocando para a classe Programa
+    # imprimir seus atributos:
+    def imprime(self):
+        print(f'Nome: {self._nome} - Duração: {self.ano} - Likes: {self._likes}')
+
 # Criação da classe Filmes, extendendo Programa:
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
@@ -68,5 +73,7 @@ for programa in filmes_e_series:
     # verifica se existe 'duração' através de 'hasattr' has attribute
     # usando if caso tenha, imprime o atributo duração 
     # caso não tenha imprime o atributo temporadas
-    detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas
-    print(f'Programa: {programa.nome} - Detalhes: {detalhes}   Likes: {programa.likes}')
+    # cancelando o algoritmo de verificação detalhes pela criaçãodo metodo Programa.imprime()
+    # detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas
+    programa.imprime()
+    # print(f'Programa: {programa.nome} - Detalhes: {detalhes}   Likes: {programa.likes}')
