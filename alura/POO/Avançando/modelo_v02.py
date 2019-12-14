@@ -30,6 +30,10 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
+    #sem função, apenas ilustrativo: 
+    def retorna_cadastro_diferenciado(self):
+        pass
+
 # Criação da classe Serie , extendendo Programa:
 class Serie(Programa):
     
