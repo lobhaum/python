@@ -35,7 +35,7 @@ class Filme(Programa):
         super().__init__(nome, ano)
         self.duracao = duracao
 
-    #sobrescrevendo o método Programa.imprime()
+    # sobrescrevendo o método Programa.imprime()
     def imprime(self):
         print(f'Nome: {self._nome} - Ano: {self.ano} Duração: {self.duracao} minutos - Likes: {self._likes}')
 
@@ -47,13 +47,13 @@ class Serie(Programa):
         super().__init__(nome, ano)
         self.temporadas = temporadas
                 
-    #sobrescrevendo o método Programa.imprime()
+    # sobrescrevendo o método Programa.imprime()
     def imprime(self):
         print(f'Nome: {self._nome} - Ano: {self.ano} Temporada: {self.temporadas} - Likes: {self._likes}')
 
 # criando e alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
-#dando like:
+# dando like:
 vingadores.dar_likes()
 vingadores.dar_likes()
 vingadores.dar_likes()
@@ -68,7 +68,7 @@ vingadores.dar_likes()
 
 
 # criando e alimentando objeto Serie:
-atlanta = Serie('Atlanta', 2018,2)
+atlanta = Serie('Atlanta', 2018, 2)
 # dando likes:
 atlanta.dar_likes()
 atlanta.dar_likes()
@@ -83,7 +83,11 @@ for programa in filmes_e_series:
     # verifica se existe 'duração' através de 'hasattr' has attribute
     # usando if caso tenha, imprime o atributo duração 
     # caso não tenha imprime o atributo temporadas
-    # cancelando o algoritmo de verificação detalhes pela criaçãodo metodo Programa.imprime()
-    # detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas
-    programa.imprime() # polimorfismo interpreta quando o metodo sera de filmes ou series automaticamente
-    # print(f'Programa: {programa.nome} - Detalhes: {detalhes}   Likes: {programa.likes}')
+    # cancelando o algoritmo de verificação detalhes pela criaçãodo metodo
+    # Programa.imprime()
+    # detalhes = programa.duracao if hasattr(programa, 'duracao') else
+    # programa.temporadas
+    programa.imprime()  # polimorfismo interpreta quando o metodo sera de
+    # filmes ou series automaticamente
+    # print(f'Programa: {programa.nome} - Detalhes: {detalhes}' 
+    # f'Likes: {programa.likes}')
