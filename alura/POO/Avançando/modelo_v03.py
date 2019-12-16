@@ -28,6 +28,7 @@ class Programa:
     def imprime(self):
         print(f'Nome: {self._nome} - Ano: {self.ano} - Likes: {self._likes}')
 
+
 # Criação da classe Filmes, extendendo Programa:
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
@@ -37,7 +38,8 @@ class Filme(Programa):
 
     # sobrescrevendo o método Programa.imprime()
     def imprime(self):
-        print(f'Nome: {self._nome} - Ano: {self.ano} Duração: {self.duracao} minutos - Likes: {self._likes}')
+        print(f'Nome: {self._nome} - Ano: {self.ano}'
+              f' Duração: {self.duracao} minutos - Likes: {self._likes}')
 
 
 # Criação da classe Serie , extendendo Programa:
@@ -49,7 +51,10 @@ class Serie(Programa):
                 
     # sobrescrevendo o método Programa.imprime()
     def imprime(self):
-        print(f'Nome: {self._nome} - Ano: {self.ano} Temporada: {self.temporadas} - Likes: {self._likes}')
+        print(f'Nome: {self._nome} - Ano: {self.ano}'
+              f' Temporada: {self.temporadas}'
+              f' - Likes: {self._likes}')
+
 
 # criando e alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
@@ -64,8 +69,6 @@ vingadores.dar_likes()
 # print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - '
 #      f'Duração: {vingadores.duracao}'
 #      f' Likes: {vingadores.likes}')
-
-
 
 # criando e alimentando objeto Serie:
 atlanta = Serie('Atlanta', 2018, 2)
