@@ -25,8 +25,8 @@ class Programa:
 
     # tornando a classe coesa, colocando para a classe Programa
     # imprimir seus atributos:
-    def imprime(self):
-        print(f'Nome: {self._nome} - Ano: {self.ano} - Likes: {self._likes}')
+    def __str__(self):  # __str__ trás string __self__ trás endereço RAM
+        return f'Nome: {self._nome} - Ano: {self.ano} - Likes: {self._likes}'
 
 
 # Criação da classe Filmes, extendendo Programa:
@@ -37,9 +37,8 @@ class Filme(Programa):
         self.duracao = duracao
 
     # sobrescrevendo o método Programa.imprime()
-    def imprime(self):
-        print(f'Nome: {self._nome} - Ano: {self.ano}'
-              f' Duração: {self.duracao} minutos - Likes: {self._likes}')
+    def __str__(self):  # __str__ trás string __self__ trás endereço RAM
+        return f'Nome: {self._nome} - Ano: {self.ano} Duração: {self.duracao} minutos - Likes: {self._likes}'
 
 
 # Criação da classe Serie , extendendo Programa:
@@ -50,21 +49,15 @@ class Serie(Programa):
         self.temporadas = temporadas
                 
     # sobrescrevendo o método Programa.imprime()
-    def imprime(self):
-        print(f'Nome: {self._nome} - Ano: {self.ano}'
-              f' Temporada: {self.temporadas}'
-              f' - Likes: {self._likes}')
+    def __str__(self):
+        return f'Nome: {self._nome} - Ano: {self.ano} Temporada: {self.temporadas} - Likes: {self._likes}'
 
 
 # criando e alimentando objeto Filme:
 vingadores = Filme('Vingadores', 2019, 180)
 # dando like:
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
+for i in range(145320):
+    vingadores.dar_likes() 
 #  imprimindo resultado:
 # print(f'Nome: {vingadores.nome} - Ano: {vingadores.ano} - '
 #      f'Duração: {vingadores.duracao}'
@@ -73,8 +66,8 @@ vingadores.dar_likes()
 # criando e alimentando objeto Serie:
 atlanta = Serie('Atlanta', 2018, 2)
 # dando likes:
-atlanta.dar_likes()
-atlanta.dar_likes()
+for i in range(4504):
+    atlanta.dar_likes()
 # imprimindo resultado:
 # print(f'Nome: {atlanta.nome} - Ano: {atlanta.ano} - Temporada(s):' 
 #      f' {atlanta.temporadas}'
@@ -82,6 +75,7 @@ atlanta.dar_likes()
 
 filmes_e_series = [vingadores, atlanta]
 for programa in filmes_e_series:
+    print(programa)
     # detalhes chama o objeto programa e a propriedade duracao,
     # verifica se existe 'duração' através de 'hasattr' has attribute
     # usando if caso tenha, imprime o atributo duração 
@@ -90,7 +84,7 @@ for programa in filmes_e_series:
     # Programa.imprime()
     # detalhes = programa.duracao if hasattr(programa, 'duracao') else
     # programa.temporadas
-    programa.imprime()  # polimorfismo interpreta quando o metodo sera de
+    # programa.imprime()  # polimorfismo interpreta quando o metodo sera de
     # filmes ou series automaticamente
     # print(f'Programa: {programa.nome} - Detalhes: {detalhes}' 
     # f'Likes: {programa.likes}')
