@@ -27,7 +27,7 @@ def index():
 @app.route('/novo')
 def novo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect('url_for('login', proxima='url_for('novo' )))
+        return redirect(url_for('login', proxima=url_for('novo')))
     else:
         return render_template('novo.html', titulo='Novo Jogo')
 
@@ -39,7 +39,7 @@ def criar():
     console = request.form['console']
     jogo = Jogo(nome, categoria, console)
     lista.append(jogo)
-    return redirect('url_for('index'))   
+    return redirect(url_for('index'))   
 
 
 @app.route('/login')
@@ -64,7 +64,7 @@ def autenticar():
 def logout():
     session['usuario_logado'] = None
     flash('Nenhum usuário logado!')
-    return redirect(url_for('index')
+    return redirect(url_for('index'))
 
 
 app.run(debug=True)
