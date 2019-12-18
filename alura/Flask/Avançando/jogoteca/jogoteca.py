@@ -1,13 +1,16 @@
-from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask import Flask, render_template, request, redirect, session, flash,\
+    url_for
 
 app = Flask(__name__)
 app.secret_key = 'alura'
+
 
 class Jogo:
     def __init__(self, nome, categoria, console):
         self.nome = nome
         self.categoria = categoria
         self.console = console
+
 
 class Usuario:
     def __init__(self, id, nome, senha):
@@ -29,9 +32,11 @@ jogo1 = Jogo('Super Mario', 'Ação', 'SNES')
 jogo2 = Jogo('Pokemon Gold', 'RPG', 'GBA')
 lista = [jogo1, jogo2]
 
+
 @app.route('/')
 def index():
     return render_template('lista.html', titulo='Jogos', jogos=lista)
+
 
 @app.route('/novo')
 def novo():
@@ -39,7 +44,8 @@ def novo():
         return redirect(url_for('login', proxima=url_for('novo')))
     return render_template('novo.html', titulo='Novo Jogo')
 
-@app.route('/criar', methods=['POST',])
+
+@app.route('/criar', methods=['POST', ])
 def criar():
     nome = request. form['nome']
     categoria = request. form['categoria']
