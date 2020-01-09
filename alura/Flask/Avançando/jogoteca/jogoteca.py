@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash,\
     url_for
+from models import Jogo, Usuario
 from dao import JogoDao
 from flask_mysqldb import MySQL
 
@@ -7,31 +8,16 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 app.secret_key = 'alura'
 
-
 app.config['MYSQL_HOST'] = "192.168.1.100"
 app.config['MYSQL_USER'] = "programador"
 app.config['MYSQL_PASSWORD'] = "Brasil2020"
-app.config['MYSQL_DB'] = 'jogoteca'
+app.config['MYSQL_DB'] = "jogoteca"
 app.config['MYSQL_PORT'] = 3306
 
 
 db = MySQL(app)
 
 jogo_dao = JogoDao(db)
-
-
-class Jogo:
-    def __init__(self, nome, categoria, console):
-        self.nome = nome
-        self.categoria = categoria
-        self.console = console
-
-
-class Usuario:
-    def __init__(self, id, nome, senha):
-        self.id = id
-        self.nome = nome
-        self.senha = senha
 
 
 usuario1 = Usuario('luan', 'Luan Marques', '1234')

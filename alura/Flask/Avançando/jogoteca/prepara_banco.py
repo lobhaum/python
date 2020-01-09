@@ -1,6 +1,7 @@
 import MySQLdb
 print('Conectando...')
-conn = MySQLdb.connect(user='programador', passwd='Brasil2020', host='192.168.1.100', port=3306)
+conn = MySQLdb.connect(user='programador', passwd='Brasil2020',
+                       host='192.168.1.100', port=3306)
 
 # Descomente se quiser desfazer o banco...
 conn.cursor().execute("DROP DATABASE `jogoteca`;")
@@ -8,7 +9,8 @@ conn.commit()
 print('Banco de dados apagado')
 
 criar_tabelas = '''SET NAMES utf8;
-    CREATE DATABASE `jogoteca` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+    CREATE DATABASE `jogoteca`
+    /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
     USE `jogoteca`;
     CREATE TABLE `jogo` (
         `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -44,7 +46,8 @@ for user in cursor.fetchall():
 
 # inserindo jogos
 cursor.executemany(
-      'INSERT INTO jogoteca.jogo (nome, categoria, console) VALUES (%s, %s, %s)',
+      '''INSERT INTO jogoteca.jogo (nome, categoria, console)
+      VALUES (%s, %s, %s)''',
       [
             ('God of War 4', 'Ação', 'PS4'),
             ('NBA 2k18', 'Esporte', 'Xbox One'),
