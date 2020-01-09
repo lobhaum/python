@@ -7,7 +7,7 @@ cursor = conn.cursor()
 
 cursor.execute('SELECT * from jogoteca.jogo')
 for user in cursor.fetchall():
-    print(f' Jogo: {user[1]} Categoria: {user[2]} Console: {user[3]}')
+    print(f'Jogo: {user[1]} Categoria: {user[2]} Console: {user[3]}')
 
 
 # commitando senão nada tem efeito
