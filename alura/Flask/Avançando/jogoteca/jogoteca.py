@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, flash,\
     url_for
 from models import Jogo, Usuario
-from dao import JogoDao
+from dao import JogoDao, UsuarioDao
 from flask_mysqldb import MySQL
 
 
@@ -18,24 +18,11 @@ app.config['MYSQL_PORT'] = 3306
 db = MySQL(app)
 
 jogo_dao = JogoDao(db)
-
-
-usuario1 = Usuario('luan', 'Luan Marques', '1234')
-usuario2 = Usuario('Nico', 'Nico Steppat', '7a1')
-usuario3 = Usuario('flavio', 'flavio Almeida', 'javascript')
-
-usuarios = {usuario1.id: usuario1,
-            usuario2.id: usuario2,
-            usuario3.id: usuario3}
-
-
-jogo1 = Jogo('Super Mario', 'Ação', 'SNES')
-jogo2 = Jogo('Pokemon Gold', 'RPG', 'GBA')
-lista = [jogo1, jogo2]
-
+usuario_dao = UsuarioDao(db)
 
 @app.route('/')
 def index():
+    lista = jogo_dao.listar()
     return render_template('lista.html', titulo='Jogos', jogos=lista)
 
 
@@ -56,6 +43,23 @@ def criar():
     return redirect(url_for('index'))
 
 
+@app.route('/editar/<int:id>')
+def editar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('edit')))
+    jogo = jogo_dao.busca_por_id(id)
+    return render_template('edit.html', titulo='Editando Jogo', jogo=jogo)
+
+
+@app.route('/atualizar', methods=['POST', ])
+def atualizar():
+    nome = request. form['nome']
+    categoria = request. form['categoria']
+    console = request. form['console']
+    jogo = Jogo(nome, categoria, console, id=request.form['id'])
+    jogo_dao.salvar(jogo)
+    return redirect(url_for('index'))
+
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
@@ -64,8 +68,8 @@ def login():
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-    if request.form['usuario'] in usuarios:
-        usuario = usuarios[request.form['usuario']]
+    usuario = usuario_dao.buscar_por_id(request.form['usuario'])
+    if usuario:
         if usuario.senha == request.form['senha']:
             session['usuario_logado'] = usuario.id
             flash(usuario.nome + ' logou com sucesso!')
