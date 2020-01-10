@@ -20,6 +20,7 @@ db = MySQL(app)
 jogo_dao = JogoDao(db)
 usuario_dao = UsuarioDao(db)
 
+
 @app.route('/')
 def index():
     lista = jogo_dao.listar()
@@ -40,6 +41,8 @@ def criar():
     console = request. form['console']
     jogo = Jogo(nome, categoria, console)
     jogo_dao.salvar(jogo)
+    arquivo = request.files['arquivo']
+    arquivo.save(arquivo.filename)
     return redirect(url_for('index'))
 
 
@@ -59,6 +62,16 @@ def atualizar():
     jogo = Jogo(nome, categoria, console, id=request.form['id'])
     jogo_dao.salvar(jogo)
     return redirect(url_for('index'))
+
+
+@app.route('/excluir/<int:id>')
+def excluir(id):
+    # if 'usuario_logado' not in session or session['usuario_logado'] == None:
+    #     return redirect(url_for('login', proxima=url_for('index')))
+    jogo = jogo_dao.deletar(id)
+    flash('O jogo foi removido com sucesso!')
+    return redirect(url_for('index'))
+
 
 @app.route('/login')
 def login():
