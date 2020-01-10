@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, session, flash,\
 from models import Jogo, Usuario
 from dao import JogoDao, UsuarioDao
 from flask_mysqldb import MySQL
-
+import os
 
 app = Flask(__name__)
 app.secret_key = 'alura'
@@ -13,6 +13,8 @@ app.config['MYSQL_USER'] = "programador"
 app.config['MYSQL_PASSWORD'] = "Brasil2020"
 app.config['MYSQL_DB'] = "jogoteca"
 app.config['MYSQL_PORT'] = 3306
+app.config['UPLOAD_PATH'] = \
+    os.path.dirname(os.path.abspath(__file__)) + '/uploads'
 
 
 db = MySQL(app)
@@ -42,7 +44,8 @@ def criar():
     jogo = Jogo(nome, categoria, console)
     jogo_dao.salvar(jogo)
     arquivo = request.files['arquivo']
-    arquivo.save(arquivo.filename)
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa{jogo.id}.jpg')
     return redirect(url_for('index'))
 
 
