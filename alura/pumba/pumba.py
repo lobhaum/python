@@ -4,7 +4,7 @@ Script para definição do nome do Pumba
 from random import randint
 from time import sleep
 NOMES = ['FLASK', 'ZIP', 'OLLY', 'BIMBO',
-         'ZÉ', 'CHICO', 'CACO', 'PUMBA'
+         'ZÉ', 'CHICO', 'CACO', 'PUMBA',
          'MAX', 'TICO', 'OSCAR', 'DJANGO',
          'BARK', 'RINGO', 'BARNEY', 'PANDA',
          'BART', 'MARVIN', 'FIDEL']
